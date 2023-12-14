@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ws="http://jax-ws.dev.java.net/spring/core" xmlns:wss="http://jax-ws.dev.java.net/spring/servlet"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="https://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd 
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+ -->
+ 
+ <beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:spring="http://www.springframework.org/schema/beans" 
+    xsi:schemaLocation="
+        https://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.0.xsd
+        https://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.0.xsd">
+ 
+	<util:map id="routes" map-class="java.util.HashMap">
+		<entry key="user_post_url" value="${base_url}" />
+		<entry key="user_get_url" value="${base_url}/{studentId}"/>
+		<entry key="user_update_url" value="${base_url}/{studentId}"/>
+		<entry key="user_delete_url" value="${base_url}/{studentId}"/>
+	</util:map>
+	<bean id="userRoutes" class="api.endpoints.Routes">
+		<property name="routesPool" ref="routes"/>
+	</bean>
+	<spring:bean id="userRoutes1" class="api.endpoints.Routes">
+<!-- 		<spring:constructor-arg index="0">
+			<spring:map>
+				
+				UCS to UCS mappings
+				<spring:entry key="user_post_url" value="${base_url}/user" />
+				<spring:entry key="user_get_url" value="${base_url}/user/{username}"/>
+				<spring:entry key="user_update_url" value="${base_url}/user/{username}"/>
+				<spring:entry key="user_delete_url" value="${base_url}/user/{username}"/>
+				End
+			</spring:map>
+		</spring:constructor-arg> -->
+		<property name="routesPool">
+			<spring:map>
+				<spring:entry key="user_post_url" value="${base_url}" />
+				<spring:entry key="user_get_url" value="${base_url}/{studentId}"/>
+				<spring:entry key="user_update_url" value="${base_url}"/>
+				<spring:entry key="user_delete_url" value="${base_url}/{studentId}"/>
+			</spring:map>
+		</property>
+	</spring:bean>
+</beans>
